@@ -10,6 +10,10 @@ const Notification = (props) => {
     specialClasses = classes.success;
   }
 
+  if (props.status === 'remove') {
+    specialClasses = classes.error;
+  }
+
   const cssClasses = `${classes.notification} ${specialClasses}`;
 
   return (

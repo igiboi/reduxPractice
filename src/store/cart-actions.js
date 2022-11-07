@@ -20,7 +20,10 @@ export const fetchCartData = () => {
 
         try {
            const cartData = await fetchData();
-            dispatch(cartActions.replaceCart(cartData));
+            dispatch(cartActions.replaceCart({
+                items: cartData.items || [],
+                totalQuantiy: cartData.totalQuantiy,
+            }));
         } catch (error) {
              dispatch(
                 uiActions.showNotification({
@@ -80,4 +83,18 @@ export const sendCartData = (cart) => {
         );
       }
     };
+
   }
+
+
+  export const removeData = async () => {
+    return async (dispatch) => {
+    dispatch(
+        uiActions.showNotification({
+          status: 'removed',
+          title: 'Removed!',
+          message: 'The item has been removed from the cart!',
+        })
+      );
+    }
+}
